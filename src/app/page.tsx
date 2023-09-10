@@ -55,6 +55,18 @@ export default function Home() {
           />
       </div> */}
       <div>
+        <div className=" my-5 flex items-center justify-center gap-2">
+          {/* <i
+            className="fa-solid fa-location-dot text-red-500"
+            style={{ fontSize: "2rem" }}
+          ></i> */}
+          <input
+            className="bg-gray-100 rounded-full px-5 py-2 shadow-md outline-none justify-self-center"
+            type="search"
+            placeholder="search for a place"
+          />
+          <button className="bg-red-500 rounded-lg px-3 py-1 hover:bg-red-600"><i className="fa-solid fa-magnifying-glass"></i></button>
+        </div>
         <div className="mt-5 flex flex-wrap wrap justify-evenly gap-5">
           {data.map((place, id) => {
             return (
@@ -72,7 +84,9 @@ export default function Home() {
                     </p>
                     <p>⭐{place.rating}</p>
                   </div>
-                  <p className="font-semibold text-md">₹ {place.priceperday} per day</p>
+                  <p className="font-semibold text-md">
+                    ₹ {place.priceperday} per day
+                  </p>
                 </div>
               </div>
             );

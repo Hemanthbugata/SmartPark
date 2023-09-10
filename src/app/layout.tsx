@@ -2,7 +2,7 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Navbar from "./components/Navbar";
-import Register from "./components/Register";
+// import Register from "./components/Register";
 // import Footer from "./components/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -20,9 +20,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Register />
-        {/* <Navbar /> */}
-        {/* {children} */}
+        {/* <Register /> */}
+        <Navbar />
+        {children}
         {/* <Footer /> */}
         <script
           src="https://kit.fontawesome.com/91dd69b788.js"
