@@ -1,6 +1,6 @@
 import Link from "next/link";
 import React from "react";
-export default function page() {
+export default function Page() {
   return (
     <>
       <div className="flex flex-wrap justify-center items-center min-h-[79vh] p-5">

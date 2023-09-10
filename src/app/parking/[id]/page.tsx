@@ -2,7 +2,7 @@
 import { log } from "console";
 import React from "react";
 import { useState } from "react";
-export default function page() {
+export default function Page() {
   const [slide, setSlide] = useState(0);
   const [resdetails, setResdetails] = useState({
     indate: "",

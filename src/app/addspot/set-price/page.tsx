@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import React from "react";
-export default function page() {
+export default function Page() {
   return (
     <>
       <div className="flex flex-wrap items-center justify-center flex-col lg:min-h-[79vh] min-h-[70vh] p-5">
