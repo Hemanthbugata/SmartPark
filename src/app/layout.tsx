@@ -24,10 +24,10 @@ export default function RootLayout({
         <Navbar />
         {children}
         {/* <Footer /> */}
-        <script
+        {/* <script
           src="https://kit.fontawesome.com/91dd69b788.js"
           crossOrigin="anonymous"
-        ></script>
+        ></script> */}
       </body>
     </html>
   );
