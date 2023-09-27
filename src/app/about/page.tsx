@@ -14,7 +14,7 @@ export default function Page() {
             <p>
               <span className="font-bold">At SmartPark,</span> we are on a
               mission to reshape the way parking is managed and experienced, and
-              we're doing it with the brilliance of blockchain technology. Our
+              we&apos;re doing it with the brilliance of blockchain technology. Our
               groundbreaking parking management system represents a leap forward
               in efficiency, transparency, and convenience for both vehicle
               owners and parking spot providers.
@@ -44,7 +44,7 @@ export default function Page() {
             <p className="mt-4">
               Join us at SmartPark and experience a new era of effortless
               parking, transformed by sapphire brilliance and secured with the
-              oasis privacy layer. Together, we're making parking smarter, more
+              oasis privacy layer. Together, we&apos;re making parking smarter, more
               accessible, and more enjoyable for everyone.
             </p>
           </div>
