@@ -1,15 +1,18 @@
 "use client";
-import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
+import { useWallet } from "../context/WalletContext";
+import { useEffect } from "react";
 
 function classNames(...classes: any) {
   return classes.filter(Boolean).join(" ");
 }
 
 export default function Navbar() {
+  const { currentAccount, connectWalletHandler } = useWallet();
+
   const pathname = usePathname();
   var navigation = [
     { name: "Home", href: "/", current: false },
@@ -19,7 +22,10 @@ export default function Navbar() {
   ];
 
   return (
-    <Disclosure as="nav" className="sticky top-0 z-10 bg-white backdrop-filter backdrop-blur-lg bg-opacity-50 border-b border-gray-200">
+    <Disclosure
+      as="nav"
+      className="sticky top-0 z-10 bg-white backdrop-filter backdrop-blur-lg bg-opacity-50 border-b border-gray-200"
+    >
       {({ open }) => (
         <>
           <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -69,8 +75,12 @@ export default function Navbar() {
                       <button
                         className=" hover:bg-gray-700 hover:text-white
                           rounded-md px-3 py-2 text-sm font-medium"
+                        onClick={connectWalletHandler}
                       >
-                        Connect Wallet
+                        {currentAccount
+                          ? "Connected to: " + currentAccount
+                          : "Connect Wallet"}
+                        {/* Now here if the wallet is connected then redirect it to signup else not */}
                       </button>
                     </Link>
                   </div>
@@ -97,13 +107,16 @@ export default function Navbar() {
                 </Link>
               ))}
               {/* <Disclosure.Button> */}
-                {/* Connect metamask wallet */}
-                <button
-                  className="hover:bg-gray-700 hover:text-white
+              {/* Connect metamask wallet */}
+              <button
+                className="hover:bg-gray-700 hover:text-white
                           rounded-md px-3 py-2 text-sm font-medium"
-                >
-                  Connect Wallet
-                </button>
+                onClick={connectWalletHandler}
+              >
+                {currentAccount
+                  ? "Connected to: " + currentAccount
+                  : "Connect Wallet"}
+              </button>
               {/* </Disclosure.Button> */}
             </div>
           </Disclosure.Panel>

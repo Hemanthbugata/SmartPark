@@ -1,123 +1,171 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { getImageLinks } from "./lib/web3Storage";
+import { getContractInstance } from "./lib/web3";
 export default function Home() {
-  const [data, setData] = useState([
+  const [pinCode, setPinCode] = useState(501510);
+
+  const getUrl = (coordinates: string[]) =>
+    `https://www.mapquestapi.com/geocoding/v1/reverse?key=ck2OXUAJsF0iz999XGQ62jyXo8AXOVp7&location=${coordinates[0]}%2C${coordinates[1]}&outFormat=json&thumbMaps=false`;
+
+  const getSpots = async () => {
+    const contract = await getContractInstance();
+    try {
+      const spotsData = await contract.methods.getSpotsByPincode(pinCode);
+      console.log(spotsData);
+      let spots: {
+        location: string;
+        priceperday: number;
+        pincode: number;
+        images: string[];
+        rating: number;
+      }[] = [];
+      for (let i = 0; i < spotsData.length; i++) {
+        const spot = spotsData[i];
+        const coordinates = spot["latLong"].split(",");
+        const url = getUrl(coordinates);
+        const response = await fetch(url);
+        const result = await response.json();
+        const spotData = {
+          location: result["results"][0]["locations"][0]["adminArea5"],
+          priceperday: spot["price"] * 24,
+          pincode: spot["pinCode"],
+          images: await getImageLinks(spot["docs"]),
+          rating: (Math.floor(Math.random() * 40) + 10) / 10,
+          vehicleType: spot["vehicleType"],
+        };
+        spots.push(spotData);
+      }
+      return spots;
+    } catch (error) {
+      console.log({ error });
+    }
+  };
+
+  const [data, setData] = useState<
+    {
+      images: string[];
+      location: string;
+      pincode: number;
+      priceperday: number;
+      rating: number;
+    }[]
+  >([
     //should get data from api/blockchain
     {
-      image: "../parking1.jpg",
+      images: ["../parking1.jpg"],
       location: "hyderabad",
       pincode: 501510,
       priceperday: 510,
       rating: 5,
     },
     {
-      image: "../parking2.jpg",
+      images: ["../parking2.jpg"],
       location: "hyderabad",
       pincode: 501510,
       priceperday: 510,
       rating: 5,
     },
     {
-      image: "../parking3.jpg",
+      images: ["../parking3.jpg"],
       location: "hyderabad",
       pincode: 501510,
       priceperday: 510,
       rating: 5,
     },
     {
-      image: "../parking4.jpeg",
+      images: ["../parking4.jpeg"],
       location: "hyderabad",
       pincode: 501510,
       priceperday: 510,
       rating: 5,
     },
     {
-      image: "../parking4.jpeg",
+      images: ["../parking4.jpeg"],
       location: "hyderabad",
       pincode: 501510,
       priceperday: 510,
       rating: 5,
     },
     {
-      image: "../parking4.jpeg",
+      images: ["../parking4.jpeg"],
       location: "hyderabad",
       pincode: 501510,
       priceperday: 510,
       rating: 5,
     },
     {
-      image: "../parking4.jpeg",
+      images: ["../parking4.jpeg"],
       location: "hyderabad",
       pincode: 501510,
       priceperday: 510,
       rating: 5,
     },
     {
-      image: "../parking4.jpeg",
+      images: ["../parking4.jpeg"],
       location: "hyderabad",
       pincode: 501510,
       priceperday: 510,
       rating: 5,
     },
     {
-      image: "../parking4.jpeg",
-      location: "hyderabad",
-      pincode: 501510,
-      priceperday: 510,
-      rating: 5,
-    },
-
-    {
-      image: "../parking4.jpeg",
+      images: ["../parking4.jpeg"],
       location: "hyderabad",
       pincode: 501510,
       priceperday: 510,
       rating: 5,
     },
     {
-      image: "../parking4.jpeg",
+      images: ["../parking4.jpeg"],
       location: "hyderabad",
       pincode: 501510,
       priceperday: 510,
       rating: 5,
     },
     {
-      image: "../parking4.jpeg",
+      images: ["../parking4.jpeg"],
       location: "hyderabad",
       pincode: 501510,
       priceperday: 510,
       rating: 5,
     },
     {
-      image: "../parking4.jpeg",
+      images: ["../parking4.jpeg"],
       location: "hyderabad",
       pincode: 501510,
       priceperday: 510,
       rating: 5,
     },
     {
-      image: "../parking4.jpeg",
+      images: ["../parking4.jpeg"],
       location: "hyderabad",
       pincode: 501510,
       priceperday: 510,
       rating: 5,
     },
     {
-      image: "../parking4.jpeg",
+      images: ["../parking4.jpeg"],
       location: "hyderabad",
       pincode: 501510,
       priceperday: 510,
       rating: 5,
     },
     {
-      image: "../parking4.jpeg",
+      images: ["../parking4.jpeg"],
       location: "hyderabad",
       pincode: 501510,
       priceperday: 510,
       rating: 5,
     },
     {
-      image: "../parking4.jpeg",
+      images: ["../parking4.jpeg"],
+      location: "hyderabad",
+      pincode: 501510,
+      priceperday: 510,
+      rating: 5,
+    },
+    {
+      images: ["../parking4.jpeg"],
       location: "hyderabad",
       pincode: 501510,
       priceperday: 510,
@@ -151,7 +199,7 @@ export default function Home() {
                 className="rounded-2xl hover:shadow-2xl px-2 lg:p-0"
               >
                 <img
-                  src={place.image}
+                  src={place.images[0]}
                   alt={`img${id}`}
                   className="rounded-2xl object-cover"
                   style={{ width: "25rem", height: "20rem" }}
