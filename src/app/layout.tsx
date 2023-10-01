@@ -2,6 +2,7 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Navbar from "./components/Navbar";
+import { WalletProvider } from "./context/WalletContext";
 // import Register from "./components/Register";
 // import Footer from "./components/Footer";
 
@@ -20,14 +21,16 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        {/* <Register /> */}
-        <Navbar />
-        {children}
-        {/* <Footer /> */}
-        {/* <script
+        <WalletProvider>
+          {/* <Register /> */}
+          <Navbar />
+          {children}
+          {/* <Footer /> */}
+          {/* <script
           src="https://kit.fontawesome.com/91dd69b788.js"
           crossOrigin="anonymous"
-        ></script> */}
+          */}
+        </WalletProvider>
       </body>
     </html>
   );
