@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { getImageLinks } from "./lib/web3Storage";
 import { getContractInstance } from "./lib/web3";
+import ParkingCard from "./components/ParkingCard";
 export default function Home() {
   const [pinCode, setPinCode] = useState(501510);
 
@@ -53,14 +54,14 @@ export default function Home() {
   >([
     //should get data from api/blockchain
     {
-      images: ["../parking1.jpg"],
+      images: ["../parking1.jpg","../parking2.jpg","../parking3.jpg","../parking4.jpeg"],
       location: "hyderabad",
       pincode: 501510,
       priceperday: 510,
       rating: 5,
     },
     {
-      images: ["../parking2.jpg"],
+      images: ["../parking2.jpg","../parking1.jpg","../parking3.jpg","../parking4.jpeg"],
       location: "hyderabad",
       pincode: 501510,
       priceperday: 510,
@@ -197,11 +198,9 @@ export default function Home() {
         <div className="mt-5 flex flex-wrap wrap justify-evenly gap-5 lg:gap-8 lg:px-20">
           {data.map((place, id) => {
             return (
-              <div
-                key={id}
-                className="rounded-2xl hover:shadow-2xl px-2 lg:p-0"
-              >
-                <img
+              <div key={id}>
+                <ParkingCard images={place.images} location={place.location} pincode={place.pincode} priceperday={place.priceperday} />
+                {/* <img
                   src={place.images[0]}
                   alt={`img${id}`}
                   className="rounded-2xl object-cover"
@@ -217,7 +216,7 @@ export default function Home() {
                   <p className="font-semibold text-md">
                     ₹ {place.priceperday} per day
                   </p>
-                </div>
+                </div> */}
               </div>
             );
           })}
