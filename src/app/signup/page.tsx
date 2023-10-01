@@ -8,7 +8,7 @@ import { storeFiles } from "../lib/web3Storage";
 
 export default function Page() {
   const { currentAccount } = useWallet();
-
+  const [isloading, setIsloading] = useState(false);
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const form = event.currentTarget;
@@ -38,7 +38,97 @@ export default function Page() {
   const cancelButtonRef = useRef(null);
   return (
     <>
-      <Transition.Root show={open} as={Fragment}>
+      <div className="flex flex-wrap justify-evenly items-center min-h-[90vh]">
+        <img
+          src="../vision.png"
+          alt="img-vect"
+          className="lg:w-[35rem] lg:h-[30rem]"
+        />
+        <div
+          className="px-5 flex items-center justify-center"
+          style={{ width: "30rem" }}
+        >
+          {/* <form onSubmit={handleSubmit}> */}
+          <form className="w-full h-100" onSubmit={handleSubmit}>
+            <div>
+              <label className="block text-gray-700">Full Name</label>
+              <input
+                type="text"
+                name="name"
+                placeholder="Enter your Full Name"
+                className="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none"
+                required
+              />
+            </div>
+            <div>
+              <label className="block text-gray-700">Email</label>
+              <input
+                type="email"
+                name="email"
+                placeholder="Enter your email address"
+                className="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none"
+                required
+              />
+            </div>
+            <div>
+              <label className="block text-gray-700" htmlFor="gender">
+                Gender
+              </label>
+              <select
+                name="gender"
+                className="w-full px-2 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none"
+              >
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <div>
+              <label className="block text-gray-700">Age</label>
+              <input
+                type="number"
+                name="age"
+                placeholder="Enter your age"
+                className="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none"
+                required
+              />
+            </div>
+            <div>
+              <label className="block text-gray-700">Driving License</label>
+              <input
+                type="number"
+                name="license"
+                placeholder="Enter your Driving License number"
+                className="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500 focus:bg-white focus:outline-none"
+                required
+              />
+            </div>
+            {isloading ? (
+              <>
+                <button
+                  disabled
+                  className="cursor-progress w-full block bg-gray-500  text-white font-semibold rounded-lg
+                  px-4 py-3 mt-6"
+                >
+                  Creating Account
+                </button>
+              </>
+            ) : (
+              <>
+                <button
+                  type="submit"
+                  className="w-full block bg-indigo-500 hover:bg-indigo-400  text-white font-semibold rounded-lg
+                  px-4 py-3 mt-6"
+                >
+                  Create Account
+                </button>
+              </>
+            )}
+          </form>
+        {/* </form> */}
+        </div>
+      </div>
+      {/* <Transition.Root show={open} as={Fragment}>
         <Dialog
           as="div"
           className="relative z-10"
@@ -68,91 +158,6 @@ export default function Page() {
                 leaveFrom="opacity-100 translate-y-0 sm:scale-100"
                 leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
               >
-                {/* <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
-                  <div className="bg-white px- pb-4 pt-5 sm:pe-3 sm:pb-4">
-                    <div className="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
-                      <Dialog.Title
-                        as="h3"
-                        className="text-base font-semibold leading-6 text-gray-900"
-                      >
-                        Create account
-                      </Dialog.Title>
-                      <div className="mt-2 border-2 border-gray-300 rounded-lg p-3">
-                        <div>
-                          <input
-                            className="px-2 outline-none h-10"
-                            type="text"
-                            placeholder="Full Name"
-                          />
-                        </div>
-                        <div className="border-t-2 border-gray-400 mt-2">
-                          <input
-                            className="px-2 outline-none h-10"
-                            type="email"
-                            placeholder="Email"
-                          />
-                        </div>
-                        <div className="border-t-2 border-gray-400 mt-2">
-                          <input
-                            className="px-2 outline-none h-10"
-                            type="text"
-                            placeholder="Gender"
-                          />
-                        </div>
-                        <div className="border-t-2 border-gray-400 mt-2">
-                          <input
-                            className="px-2 outline-none h-10"
-                            type="number"
-                            placeholder="Age"
-                          />
-                        </div>
-                        <div className="border-t-2 border-gray-400 mt-2 pt-2 px-2 flex justify-between">
-                          <label className="text-gray-400">
-                            Driver&apos;s License
-                          </label>
-                          <div className="flex items-center bg-gray-500 text-white p-2 rounded-lg gap-1">
-                            <label
-                              htmlFor="licenseimg"
-                              className="cursor-pointer"
-                            >
-                              Upload
-                            </label>
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              height="1rem"
-                              viewBox="0 0 512 512"
-                              fill="white"
-                            >
-                              <path d="M0 96C0 60.7 28.7 32 64 32H448c35.3 0 64 28.7 64 64V416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96zM323.8 202.5c-4.5-6.6-11.9-10.5-19.8-10.5s-15.4 3.9-19.8 10.5l-87 127.6L170.7 297c-4.6-5.7-11.5-9-18.7-9s-14.2 3.3-18.7 9l-64 80c-5.8 7.2-6.9 17.1-2.9 25.4s12.4 13.6 21.6 13.6h96 32H424c8.9 0 17.1-4.9 21.2-12.8s3.6-17.4-1.4-24.7l-120-176zM112 192a48 48 0 1 0 0-96 48 48 0 1 0 0 96z" />
-                            </svg>
-                          </div>
-                          <input
-                            id="licenseimg"
-                            className="hidden"
-                            type="file"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
-                    <button
-                      type="button"
-                      className="inline-flex w-full justify-center rounded-md bg-green-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-green-600 sm:ml-3 sm:w-auto"
-                      onClick={() => setOpen(false)}
-                    >
-                      Create
-                    </button>
-                    <button
-                      type="button"
-                      className="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto"
-                      onClick={() => setOpen(false)}
-                      ref={cancelButtonRef}
-                    >
-                      Cancel
-                    </button>
-                  </div>
-                </Dialog.Panel> */}
                 <form onSubmit={handleSubmit}>
                   <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
                     <div className="bg-white px- pb-4 pt-5 sm:pe-3 sm:pb-4">
@@ -209,34 +214,6 @@ export default function Page() {
                               required
                             />
                           </div>
-                          {/* <div className="border-t-2 border-gray-400 mt-2 pt-2 px-2 flex justify-between">
-                            <label className="text-gray-400">
-                              Driver&apos;s License
-                            </label>
-                            <div className="flex items-center bg-gray-500 text-white p-2 rounded-lg gap-1">
-                              <label
-                                htmlFor="licenseimg"
-                                className="cursor-pointer"
-                              >
-                                Upload
-                              </label>
-                              <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                height="1rem"
-                                viewBox="0 0 512 512"
-                                fill="white"
-                              >
-                                <path d="M0 96C0 60.7 28.7 32 64 32H448c35.3 0 64 28.7 64 64V416c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V96zM323.8 202.5c-4.5-6.6-11.9-10.5-19.8-10.5s-15.4 3.9-19.8 10.5l-87 127.6L170.7 297c-4.6-5.7-11.5-9-18.7-9s-14.2 3.3-18.7 9l-64 80c-5.8 7.2-6.9 17.1-2.9 25.4s12.4 13.6 21.6 13.6h96 32H424c8.9 0 17.1-4.9 21.2-12.8s3.6-17.4-1.4-24.7l-120-176zM112 192a48 48 0 1 0 0-96 48 48 0 1 0 0 96z" />
-                              </svg>
-                            </div>
-                            <input
-                              id="licenseimg"
-                              className="hidden"
-                              type="file"
-                              name="licenseimg"
-                              required
-                            />
-                          </div> */}
                         </div>
                       </div>
                     </div>
@@ -262,7 +239,7 @@ export default function Page() {
             </div>
           </div>
         </Dialog>
-      </Transition.Root>
+      </Transition.Root> */}
     </>
   );
 }

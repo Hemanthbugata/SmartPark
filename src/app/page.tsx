@@ -176,11 +176,14 @@ export default function Home() {
     <>
       <div className="my-5 mb-10">
         <div className=" flex items-center justify-center gap-2">
-          <input
-            className="bg-gray-100 rounded-full px-5 py-2 shadow-md outline-none justify-self-center"
-            type="search"
-            placeholder="search for a place"
-          />
+          <div className="bg-gray-100 rounded-full border-2 p-2  shadow-md outline-none justify-self-center">
+            <input className=" ps-5 pe-1 py-2 w-30 bg-gray-100 outline-none border-r-2 border-gray-400" type="text" placeholder="search by Address"/>
+            <input
+              className=" ps-5 py-2 w-[40%] bg-gray-100 outline-none"
+              type="number"
+              placeholder="search by pincode"
+            />
+          </div>
           <button className="bg-red-500 rounded-lg px-3 py-2 hover:bg-red-600">
             <svg
               xmlns="http://www.w3.org/2000/svg"
