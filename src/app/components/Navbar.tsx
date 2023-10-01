@@ -4,7 +4,6 @@ import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { useWallet } from "../context/WalletContext";
-import { useEffect } from "react";
 
 function classNames(...classes: any) {
   return classes.filter(Boolean).join(" ");

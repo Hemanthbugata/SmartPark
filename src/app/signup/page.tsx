@@ -170,6 +170,7 @@ export default function Page() {
                               type="text"
                               placeholder="Full Name"
                               name="name"
+                              required
                             />
                           </div>
                           <div className="border-t-2 border-gray-400 mt-2">
@@ -178,6 +179,7 @@ export default function Page() {
                               type="email"
                               placeholder="Email"
                               name="email"
+                              required
                             />
                           </div>
                           <div className="border-t-2 border-gray-400 mt-2">
@@ -186,6 +188,7 @@ export default function Page() {
                               type="text"
                               placeholder="Gender"
                               name="gender"
+                              required
                             />
                           </div>
                           <div className="border-t-2 border-gray-400 mt-2">
@@ -194,6 +197,7 @@ export default function Page() {
                               type="number"
                               placeholder="Age"
                               name="age"
+                              required
                             />
                           </div>
                           <div className="border-t-2 border-gray-400 mt-2">
@@ -202,6 +206,7 @@ export default function Page() {
                               type="text"
                               placeholder="Driving License"
                               name="drivingLicense"
+                              required
                             />
                           </div>
                           {/* <div className="border-t-2 border-gray-400 mt-2 pt-2 px-2 flex justify-between">
@@ -229,6 +234,7 @@ export default function Page() {
                               className="hidden"
                               type="file"
                               name="licenseimg"
+                              required
                             />
                           </div> */}
                         </div>
