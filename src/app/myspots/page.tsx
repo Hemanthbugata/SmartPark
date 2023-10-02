@@ -29,7 +29,7 @@ export default function Page() {
   ];
   return (
     <div className="p-5">
-      <p className="font-bold text-3xl">Your Bookings: </p>
+      <p className="font-bold text-3xl">Your Parking Spots: </p>
       {spots.length > 0 ? (
         <>
           <div className="flex flex-col gap-5 p-4">
