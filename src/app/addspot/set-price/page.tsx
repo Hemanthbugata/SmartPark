@@ -13,7 +13,7 @@ export default function Page() {
         </div>
 
         <div className="flex text-[4rem] max-w-40 text-center">
-          <span>₹</span>
+          <span>$</span>
           <input
             className="outline-none w-60"
             type="number"

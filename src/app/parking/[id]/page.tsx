@@ -47,7 +47,7 @@ export default function Page() {
           {data.location}, {data.pincode}
         </p>
         <p className="mt-3 text-lg font-semibold">
-          ⭐ {data.rating}, ₹ {data.priceperday} per day
+          ⭐ {data.rating}, $ {data.priceperday} per day
         </p>
         <div className="mt-5 rounded-2xl flex flex-wrap  justify-evenly gap-8 items-center">
           <div className="lg:-ms-20 flex items-center gap-5 text-2xl">

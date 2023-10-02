@@ -43,7 +43,7 @@ export default function ParkingCard(props: any) {
             </p>
             <p>⭐{rating}</p>
           </div>
-          <p className="font-semibold text-md">₹ {priceperday} per day</p>
+          <p className="font-semibold text-md">$ {priceperday} per day</p>
         </div>
       </div>
     </>

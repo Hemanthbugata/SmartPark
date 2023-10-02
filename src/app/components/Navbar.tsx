@@ -46,12 +46,7 @@ export default function Navbar() {
               <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-between">
                 <div className="flex flex-shrink-0 items-center">
                   <Link href="/">
-                    {/* <img
-                    className="h-8 w-auto"
-                    src=""
-                    alt="SmartPark"
-                  /> */}
-                    <p className="text-dark font-bold text-2xl">SmartPark</p>
+                    <p className="text-dark font-bold text-2xl flex items-center"><img src="../logo.png" alt="logo" className="w-[3rem]" />SmartPark</p>
                   </Link>
                 </div>
                 <div className="hidden sm:ml-6 sm:block">
