@@ -96,7 +96,33 @@ associated with hunting for parking in congested urban areas.
 * It would include functions for users to register parking spaces, book spots, manage payments, and potentially handle dispute resolution.
 * The smart contract would be deployed on the Ethereum blockchain and interacted with through the frontend and backend components
 
-# Local Installation
+# Local installation
+
+1. Clone the repository
+
+First, you need to clone the repository
+
+```
+git clone https://github.com/suraj719/smartPark.git
+```
+
+2. Install Dependencies
+
+Install the project's dependencies:
+
+```
+npm install
+```
+
+3. Start the Project
+
+Once all the dependencies are installed, you can start the project:
+
+```
+npm run dev
+```
+
+The project should now be running on `http://localhost:3000`
 
 # Usage
 
